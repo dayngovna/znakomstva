@@ -29,6 +29,7 @@ async def create(ctx,years,floor,*,im):#создать анкету
     await ctx.author.send(embed=embed)
 @client.command()
 async def find(ctx,years):#поиск анкеты
+    year = f"{years}"
     x = collection.find({"years":years})
     for x in x:
         #
