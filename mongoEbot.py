@@ -16,11 +16,13 @@ async def on_ready():
         activity=discord.Game("ekfara bot")) 
 @client.command()
 async def create(ctx,years,floor,*,im):#создать анкету
-    #if collection.count_documents({"_id":ctx.author.mention}) == 1:
-        #collection.delete_one({"_id":ctx.author.mention})
-        
+    name = ctx.author.mention
+    if collection.count_documents({"_id":name}) == 1:
+        collection.delete_one({"_id":name})
+        print("anketa del")
+    print("anketa new")
     collection.insert_one({
-        "_id":ctx.author.mention,
+        "_id":name,
         'years': years,
         'floor': floor,
         'im': im,
@@ -49,6 +51,6 @@ async def ekfar(ctx):#help
 async def admindata(ctx):
     data = collection.find()
     for d in data:
-        await ctx.author.send(str(d))
+        print(d)
 
 client.run(os.environ['token'])
