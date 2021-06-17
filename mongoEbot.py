@@ -31,15 +31,13 @@ async def create(ctx,years,floor,*,im):#создать анкету
 async def find(ctx,years):#поиск анкеты
     x = collection.find({"years":years})
     for x in x:
-        if x['years'] == str(years):
-            embed = discord.Embed(title=f'Анкета '+x['_id'])
-            embed.set_thumbnail(url=x['ava'])
-            embed.add_field(name="Возраст",value=x['years'])
-            embed.add_field(name="Пол",value=x['floor'])
-            embed.add_field(name="О себе",value=x['im'],inline=False)
-            await ctx.author.send(embed=embed)
-        else:
-            await ctx.author.send("Мы не нашли анкету,измените запрос") 
+        #
+        embed = discord.Embed(title=f'Анкета '+x['_id'])
+        embed.set_thumbnail(url=x['ava'])
+        embed.add_field(name="Возраст",value=x['years'])
+        embed.add_field(name="Пол",value=x['floor'])
+        embed.add_field(name="О себе",value=x['im'],inline=False)
+        await ctx.author.send(embed=embed) 
 @client.command()
 async def random(ctx):#random
     collection.count_documents({})
