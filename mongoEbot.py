@@ -33,6 +33,11 @@ async def find(ctx,years):#поиск анкеты
     x = collection.find({"years":years})
     for x in x:
         #
+        print(x['_id'])
+        print(x['ava'])
+        print(x['years'])
+        print(x['floor'])
+        print(x['im'])
         embed = discord.Embed(title=f'Анкета '+str(x['_id']))
         embed.set_thumbnail(url=x['ava'])
         embed.add_field(name="Возраст",value=str(x['years']))
