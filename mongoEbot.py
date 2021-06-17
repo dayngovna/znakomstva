@@ -7,8 +7,8 @@ from random import randint
 client = commands.Bot(command_prefix=">",intents=discord.Intents.all())
 
 cluster = MongoClient("mongodb+srv://ekfar1:1234@cluster0.dhafo.mongodb.net/bd?retryWrites=true&w=majority")
-db = cluster["bd"]
-collection = db["coolname"]
+bd = cluster["bd"]
+collection = bd["coolname"]
 
 @client.event
 async def on_ready():
