@@ -16,6 +16,9 @@ async def on_ready():
         activity=discord.Game("ekfara bot")) 
 @client.command()
 async def create(ctx,years,floor,*,im):#создать анкету
+    cluster = MongoClient("mongodb+srv://ekfar1:1234@cluster0.dhafo.mongodb.net/bd?retryWrites=true&w=majority")
+    db = cluster["bd"]
+    collection = db["coolname"]
     name = ctx.author.mention
     collection.insert_one({"_id":str(name),'years': str(years),'floor': str(floor),'im': str(im),'ava': str(ctx.author.avatar_url)})
 @client.command()
@@ -30,8 +33,12 @@ async def ekfar(ctx):#help
     await ctx.send(embed=embed)    
 @client.command()
 async def admindata(ctx):
+    cluster = MongoClient("mongodb+srv://ekfar1:1234@cluster0.dhafo.mongodb.net/bd?retryWrites=true&w=majority")
+    db = cluster["bd"]
+    collection = db["coolname"]
     data = collection.find()
     for d in data:
         print(d)
+        await ctx.author.send(d)
 
 client.run(os.environ['token'])
