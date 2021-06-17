@@ -16,8 +16,8 @@ async def on_ready():
         activity=discord.Game("ekfara bot")) 
 @client.command()
 async def create(ctx,years,floor,*,im):#создать анкету
-    if collection.count_documents({"_id":ctx.author.mention}) == 1:
-        collection.delete_one({"_id":ctx.author.mention})
+    #if collection.count_documents({"_id":ctx.author.mention}) == 1:
+        #collection.delete_one({"_id":ctx.author.mention})
         
     collection.insert_one({
         "_id":ctx.author.mention,
