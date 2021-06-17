@@ -18,10 +18,10 @@ async def on_ready():
 async def create(ctx,years,floor,*,im):#создать анкету
     name = ctx.author.mention
     collection.insert_one({
-        "_id":name,
-        'years': years,
-        'floor': floor,
-        'im': im,
+        "_id":str(name),
+        'years': str(years),
+        'floor': str(floor),
+        'im': str(im),
         'ava': str(ctx.author.avatar_url)})
 @client.command()
 async def ekfar(ctx):#help
