@@ -17,26 +17,12 @@ async def on_ready():
 @client.command()
 async def create(ctx,years,floor,*,im):#создать анкету
     name = ctx.author.mention
-    if collection.count_documents({"_id":name}) == 1:
-        collection.delete_one({"_id":name})
-        print("anketa del")
-    print("anketa new")
     collection.insert_one({
         "_id":name,
         'years': years,
         'floor': floor,
         'im': im,
         'ava': str(ctx.author.avatar_url)})
-
-    for x in bd:
-        if x['_id'] == ctx.author.mention:
-            await ctx.author.send("Все твои анкеты")
-            embed = discord.Embed(title=f'Анкета '+x['_id'])
-            embed.set_thumbnail(url=x['ava'])
-            embed.add_field(name="Возраст",value=x['years'])
-            embed.add_field(name="Пол",value=x['floor'])
-            embed.add_field(name="О себе",value=x['im'],inline=False)
-            await ctx.author.send(embed=embed)
 @client.command()
 async def ekfar(ctx):#help
     embed = discord.Embed(title="Это бот знакомств от экфара")
