@@ -37,13 +37,13 @@ async def create(ctx,years,floor,*,im):#создать анкету
             await ctx.author.send(embed=embed)
 @client.command()
 async def find(ctx,years):#поиск анкеты
-    data = collection.find_many()["years"]
+    data = collection.find_many({"years":years})["_id"]
     print(data)
         for xx in data:
             print(xx)
             if xx['years'] == str(years):
                 print("finded!")
-                embed = discord.Embed(title=f'Анкета '+xx['name'])
+                embed = discord.Embed(title=f'Анкета '+xx['_id'])
                 embed.set_thumbnail(url=xx['ava'])
                 embed.add_field(name="Возраст",value=xx['years'])
                 embed.add_field(name="Пол",value=xx['floor'])
