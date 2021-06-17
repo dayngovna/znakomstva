@@ -20,28 +20,14 @@ async def create(ctx,years,floor,*,im):#создать анкету
         collection.delete_one({"_id":ctx.author.mention})
     collection.insert_one({"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url)})
 
-    for x in collection:
-        if x['_id'] == ctx.author.mention:
-            embed = discord.Embed(title=f'Анкета '+x['_id'])
-            embed.set_thumbnail(url=x['ava'])
-            embed.add_field(name="Возраст",value=x['years'])
-            embed.add_field(name="Пол",value=x['floor'])
-            embed.add_field(name="О себе",value=x['im'],inline=False)
-            await ctx.author.send(embed=embed)
-@client.command()
-async def find(ctx,years):#поиск анкеты
-        for xx in collection:
-            print(xx)
-            if xx['years'] == str(years):
-                print("finded!")
-                embed = discord.Embed(title=f'Анкета '+xx['_id'])
-                embed.set_thumbnail(url=xx['ava'])
-                embed.add_field(name="Возраст",value=xx['years'])
-                embed.add_field(name="Пол",value=xx['floor'])
-                embed.add_field(name="О себе",value=xx['im'],inline=False)
-                await ctx.author.send(embed=embed)
-            else:
-                await ctx.author.send("Мы не нашли анкету,измените запрос")  
+    x = collection.find_one({"_id":ctx.author.mention})
+    embed = discord.Embed(title=f'Анкета '+x['_id'])
+    embed.set_thumbnail(url=x['ava'])
+    embed.add_field(name="Возраст",value=x['years'])
+    embed.add_field(name="Пол",value=x['floor'])
+    embed.add_field(name="О себе",value=x['im'],inline=False)
+    await ctx.author.send(embed=embed)
+ 
 @client.command()
 async def random(ctx):#random      
     pass                
