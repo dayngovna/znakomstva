@@ -36,22 +36,6 @@ async def create(ctx,years,floor,*,im):#создать анкету
             embed.add_field(name="О себе",value=x['im'],inline=False)
             await ctx.author.send(embed=embed)
 @client.command()
-async def find(ctx,years):#поиск анкеты
-    data = collection.find_many({"years":years})["_id"]
-    print(data)
-        for xx in data:
-            print(xx)
-            if xx['years'] == str(years):
-                print("finded!")
-                embed = discord.Embed(title=f'Анкета '+xx['_id'])
-                embed.set_thumbnail(url=xx['ava'])
-                embed.add_field(name="Возраст",value=xx['years'])
-                embed.add_field(name="Пол",value=xx['floor'])
-                embed.add_field(name="О себе",value=xx['im'],inline=False)
-                await ctx.author.send(embed=embed)
-            else:
-                await ctx.author.send("Мы не нашли анкету,измените запрос")
-@client.command()
 async def ekfar(ctx):#help
     embed = discord.Embed(title="Это бот знакомств от экфара")
     embed.add_field(name="Бот работает через лс",value="Просто напиши ему команду",inline=False)
