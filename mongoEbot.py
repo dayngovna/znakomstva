@@ -16,8 +16,7 @@ async def on_ready():
         activity=discord.Game("ekfara bot")) 
 @client.command()
 async def create(ctx,years,floor,*,im):#создать анкету
-    name = ctx.author.mention
-    collection.insert_one({"_id":str(name),'years': str(years),'floor': str(floor),'im': str(im),'ava': str(ctx.author.avatar_url)})
+    collection.insert_one({"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url)})
 @client.command()
 async def ekfar(ctx):#help
     embed = discord.Embed(title="Это бот знакомств от экфара")
