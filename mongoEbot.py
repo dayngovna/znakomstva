@@ -48,6 +48,7 @@ async def ekfar(ctx):#help
 @client.command()
 async def admindata(ctx):
     data = collection.find()
-    await ctx.author.send(data)
+    for d in data:
+        await ctx.author.send(d)
 
 client.run(os.environ['token'])
