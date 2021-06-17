@@ -20,7 +20,7 @@ async def create(ctx,years,floor,*,im):#создать анкету
         collection.delete_one({"_id":ctx.author.mention})
     collection.insert_one({"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url)})
 
-    for x in bd:
+    for x in collection:
         if x['_id'] == ctx.author.mention:
             embed = discord.Embed(title=f'Анкета '+x['_id'])
             embed.set_thumbnail(url=x['ava'])
