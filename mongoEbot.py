@@ -24,7 +24,7 @@ async def create(ctx,years,floor,*,im):#создать анкету
         'years': years,
         'floor': floor,
         'im': im,
-        'ava': str(ctx.author.avatar_url})
+        'ava': str(ctx.author.avatar_url)})
 
     for x in bd:
         if x['_id'] == ctx.author.mention:
