@@ -33,7 +33,7 @@ async def find(ctx,years):#поиск анкеты
     for x in x:
         #
         embed = discord.Embed(title=f'Анкета '+str(x['_id']))
-        embed.set_thumbnail(str(url=x['ava']))
+        embed.set_thumbnail(url=x['ava'])
         embed.add_field(name="Возраст",value=str(x['years']))
         embed.add_field(name="Пол",value=str(x['floor']))
         embed.add_field(name="О себе",value=str(x['im']),inline=False)
