@@ -16,9 +16,11 @@ async def on_ready():
         activity=discord.Game("ekfara bot")) 
 @client.command()
 async def create(ctx,years,floor,*,im):#создать анкету
+    count = collection.count_documents({}))
     if collection.count_documents({"_id":ctx.author.mention}) == 1:
-        collection.delete_one({"_id":ctx.author.mention})
-    collection.insert_one({"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url)})
+        collection.update({"_id":ctx.author.mention},{"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url),"r":count})
+    else:
+        collection.insert_one({"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url),"r":count+1})
 
     x = collection.find_one({"_id":ctx.author.mention})
     embed = discord.Embed(title=f'Анкета '+x['_id'])
@@ -29,14 +31,15 @@ async def create(ctx,years,floor,*,im):#создать анкету
     await ctx.author.send(embed=embed)
 @client.command()
 async def random(ctx):#random
-    collection.count_documents({})
     print(collection.count_documents({}))
-    pass    
-@client.command()
-async def find(ctx,years):
-    for collection in collection.find().sort(years).limit(3):
-        print(collection) 
-        await ctx.author.send(collection)
+    rand = randint(0,collection.count_documents({})-1)
+    x = collection.find({"r":str(rand)})
+    for x in x:
+        print(x['_id'])
+        print(x['years'])
+        print(x['im'])
+        print(x['floor'])
+        print(x['ava'])
 @client.command()
 async def ekfar(ctx):#help
     embed = discord.Embed(title="Это бот знакомств от экфара")
