@@ -47,12 +47,12 @@ async def random(ctx):#random
         floorz = x['floor']
         print(x['ava'])
         avaz = x['ava']
-     embed = discord.Embed(title="Анкета "+idz)
-     embed.set_thumbnail(url=str(avaz))
-     embed.add_field(name="Возраст",value=str(yearsz))
-     embed.add_field(name="Пол",value=str(floorz))
-     embed.add_field(name="О себе",value=str(imz),inline=False)
-     await ctx.author.send(embed=embed)
+    embed = discord.Embed(title="Анкета "+str(idz))
+    embed.set_thumbnail(url=str(avaz))
+    embed.add_field(name="Возраст",value=str(yearsz))
+    embed.add_field(name="Пол",value=str(floorz))
+    embed.add_field(name="О себе",value=str(imz),inline=False)
+    await ctx.author.send(embed=embed)
 @client.command()
 async def ekfar(ctx):#help
     embed = discord.Embed(title="Это бот знакомств от экфара")
