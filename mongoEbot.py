@@ -33,6 +33,7 @@ async def create(ctx,years,floor,*,im):#создать анкету
     await ctx.author.send(embed=embed)
 @client.command()
 async def random(ctx):#random
+    global idz,yearsz,avaz,floorz,imz
     print(collection.count_documents({}))
     rand = randint(0,collection.count_documents({})-1)
     x = collection.find({"r":str(rand)})
