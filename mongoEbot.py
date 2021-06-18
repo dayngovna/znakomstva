@@ -22,7 +22,7 @@ async def create(ctx,years,floor,*,im):#создать анкету
         dd = collection.find_one({"_id":ctx.author.mention})
         collection.update({"_id":ctx.author.mention},{"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url),"r":dd['r']})
     else:
-        collection.insert_one({"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url),"r":count})
+        collection.insert_one({"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url),"r":str(count)})
 
     x = collection.find_one({"_id":ctx.author.mention})
     embed = discord.Embed(title=f'Анкета '+x['_id'])
