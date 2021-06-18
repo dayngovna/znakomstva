@@ -35,7 +35,7 @@ async def create(ctx,years,floor,*,im):#создать анкету
 async def random(ctx):#random
     global idz,yearsz,avaz,floorz,imz
     print(collection.count_documents({}))
-    rand = randint(0,collection.count_documents({})-1)
+    rand = randint(0,collection.count_documents({}))
     print("rand="+str(rand))
     x = collection.find({"r":str(rand)})
     for x in x:
