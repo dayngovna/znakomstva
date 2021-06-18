@@ -18,7 +18,8 @@ async def on_ready():
 async def create(ctx,years,floor,*,im):#создать анкету
     count = collection.count_documents({})
     if collection.count_documents({"_id":ctx.author.mention}) == 1:
-        collection.update({"_id":ctx.author.mention},{"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url)})
+        dd = collection.find_one({"_id":ctx.author.mention})
+        collection.update({"_id":ctx.author.mention},{"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url),"r":dd['r']})
     else:
         collection.insert_one({"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url),"r":count})
 
