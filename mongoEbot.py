@@ -35,7 +35,7 @@ async def create(ctx,years,floor,*,im):#создать анкету
 async def random(ctx):#random
     global idz,yearsz,avaz,floorz,imz
     print(collection.count_documents({}))
-    rand = randint(0,collection.count_documents({}))
+    rand = randint(0,collection.count_documents({})-1)
     print("rand="+str(rand))
     x = collection.find({"r":str(rand)})
     for x in x:
@@ -50,7 +50,7 @@ async def random(ctx):#random
         print(x['ava'])
         avaz = x['ava']
     embed = discord.Embed(title="Анкета "+str(idz))
-    #embed.set_thumbnail(url=str(avaz))
+    embed.set_thumbnail(url=str(avaz))
     embed.add_field(name="Возраст",value=str(yearsz))
     embed.add_field(name="Пол",value=str(floorz))
     embed.add_field(name="О себе",value=str(imz),inline=False)
