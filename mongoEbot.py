@@ -36,6 +36,7 @@ async def random(ctx):#random
     global idz,yearsz,avaz,floorz,imz
     print(collection.count_documents({}))
     rand = randint(0,collection.count_documents({})-1)
+    print("rand="+str(rand))
     x = collection.find({"r":str(rand)})
     for x in x:
         print(x['_id'])
