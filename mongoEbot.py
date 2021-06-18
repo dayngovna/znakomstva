@@ -50,7 +50,7 @@ async def random(ctx):#random
         print(x['ava'])
         avaz = x['ava']
     embed = discord.Embed(title="Анкета "+str(idz))
-    embed.set_thumbnail(url=str(avaz))
+    #embed.set_thumbnail(url=str(avaz))
     embed.add_field(name="Возраст",value=str(yearsz))
     embed.add_field(name="Пол",value=str(floorz))
     embed.add_field(name="О себе",value=str(imz),inline=False)
