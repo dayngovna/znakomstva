@@ -35,8 +35,8 @@ async def random(ctx):#random
 @client.command()
 async def find(ctx,years):
     for collection in collection.find().sort(years).limit(3):
-    print(collection) 
-    await ctx.author.send(collection)
+        print(collection) 
+        await ctx.author.send(collection)
 @client.command()
 async def ekfar(ctx):#help
     embed = discord.Embed(title="Это бот знакомств от экфара")
