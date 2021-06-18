@@ -40,15 +40,20 @@ async def random(ctx):#random
     x = collection.find({"r":str(rand)})
     for x in x:
         print(x['_id'])
+        idz = x['_id']
         print(x['years'])
+        yearsz = x['years']
         print(x['im'])
+        imz = x['im']
         print(x['floor'])
+        floorz = x['floor']
         print(x['ava'])
-        embed = discord.Embed(title=f'Анкета '+x['_id'])
-        embed.set_thumbnail(url=x['ava'])
-        embed.add_field(name="Возраст",value=x['years'])
-        embed.add_field(name="Пол",value=x['floor'])
-        embed.add_field(name="О себе",value=x['im'],inline=False)
+        avaz = x['ava']
+     embed = discord.Embed(title=f'Анкета '+str(idz))
+     embed.set_thumbnail(url=str(avaz))
+     embed.add_field(name="Возраст",value=str(yearsz))
+     embed.add_field(name="Пол",value=str(floorz))
+     embed.add_field(name="О себе",value=str(imz),inline=False)
      await ctx.author.send(embed=embed)
 @client.command()
 async def ekfar(ctx):#help
