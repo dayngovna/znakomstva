@@ -14,7 +14,9 @@ collection = bd["coolname"]
 async def on_ready():
     await client.change_presence(status=discord.Status.online,
         activity=discord.Game("ekfara bot")) 
-
+@client.command()
+async def test(ctx):
+    await ctx.author.send(ctx.author.name)
 @client.command()
 async def create(ctx,years,floor,*,im):#создать анкету
     count = collection.count_documents({})
