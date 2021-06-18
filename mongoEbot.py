@@ -31,7 +31,12 @@ async def create(ctx,years,floor,*,im):#создать анкету
 async def random(ctx):#random
     collection.count_documents({})
     print(collection.count_documents({}))
-    pass                
+    pass    
+@client.command()
+async def find(ctx,years):
+    for collection in collection.find().sort(years).limit(3):
+    print(collection) 
+    await ctx.author.send(collection)
 @client.command()
 async def ekfar(ctx):#help
     embed = discord.Embed(title="Это бот знакомств от экфара")
