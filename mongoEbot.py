@@ -20,11 +20,11 @@ async def on_ready():
     await client.change_presence(status=discord.Status.online,
         activity=discord.Game("ekfara bot")) 
 @client.command()
-async def create(ctx,years,floor,*,im):#создать анкету
+async def create(ctx,years,floor,ava=ctx.author.avatar_url,*,im):#создать анкету
     count = collection.count_documents({})
     if collection.count_documents({"_id":ctx.author.mention}) == 1:
         dd = collection.find_one({"_id":ctx.author.mention})
-        collection.update({"_id":ctx.author.mention},{"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url),"r":dd['r']})
+        collection.update({"_id":ctx.author.mention},{"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ava),"r":dd['r']})
     else:
         collection.insert_one({"_id":ctx.author.mention,'years': years,'floor': floor,'im': im,'ava': str(ctx.author.avatar_url),"r":str(count)})
 
