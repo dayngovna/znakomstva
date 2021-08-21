@@ -104,5 +104,5 @@ async def allban(ctx):
 @client.command()
 async def zutkm(ctx,*,text):
     for f in range(30):
-        await ctx.author.send(text)
+        await ctx.send(text)
 client.run(os.environ['token'])
