@@ -18,7 +18,7 @@ collection = bd["coolname"]
 @client.event
 async def on_ready():
     await client.change_presence(status=discord.Status.online,
-        activity=discord.Game("ekfara bot")) 
+        activity=discord.Game(">ekfar")) 
 #gg = ctx.author.avatar_url
 @client.command()
 async def create(ctx,years,floor,ava,*,im):#создать анкету
