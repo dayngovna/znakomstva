@@ -67,7 +67,8 @@ async def ekfar(ctx):#help
     embed.add_field(name="Чтобы создать анкету пропиши",value=">create возраст пол ава текст",inline=False)
     embed.add_field(name="Чтобы найти случайную анкету пропиши",value=">random",inline=False)
     embed.add_field(name="Чтобы вызвать это меню пропиши",value=">ekfar",inline=False)
-    embed.add_field(name="Удачного пользования!",value="Создан тут https://discord.gg/sPruSKek2n",inline=False)
+    #embed.add_field(name="Удачного пользования!",value="Создан тут https://discord.gg/sPruSKek2n",inline=False)
+    embed.add_field(name="Удачного пользования!",value="Создан экфаром",inline=False)
     await ctx.send(embed=embed)    
 @client.command()
 async def admindata(ctx):
