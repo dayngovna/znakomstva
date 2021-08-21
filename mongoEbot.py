@@ -19,8 +19,9 @@ collection = bd["coolname"]
 async def on_ready():
     await client.change_presence(status=discord.Status.online,
         activity=discord.Game("ekfara bot")) 
+gg = ctx.author.avatar_url
 @client.command()
-async def create(ctx,years,floor,ava=ctx.author.avatar_url,*,im):#создать анкету
+async def create(ctx,years,floor,ava=gg,*,im):#создать анкету
     count = collection.count_documents({})
     if collection.count_documents({"_id":ctx.author.mention}) == 1:
         dd = collection.find_one({"_id":ctx.author.mention})
